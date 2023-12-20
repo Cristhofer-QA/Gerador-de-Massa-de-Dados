@@ -1,0 +1,243 @@
+:root {
+    --backgound-footer: #C58940;
+    --background-body: #FAEAB1;
+    --letra-padrao: #ffffff;
+    --background-spans-hover: rgba(197, 137, 64, 0.647);
+    --background-spans: #c58940;
+    --background-modal-fundo: #000000b5;
+    --background-text-area: #FAEAB1;
+    --background-botao-gerar: #704112;
+    --background-botao-gerar-hover: rgb(151, 97, 43);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Questrial', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    color: var(--letra-padrao);
+    font-size: 16px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    min-width: 900px;
+    min-height: 600px;
+    flex-direction: column;
+    background-color: var(--background-body);
+}
+
+header {
+    display: flex;
+    background-color: var(--backgound-footer);
+    width: 100%;
+    min-width: 900px;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    padding: 15px;
+    cursor: default;
+}
+
+section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+button {
+    background: none;
+    border: 0px;
+    cursor: pointer;
+
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: 100;
+    margin-bottom: 30px;
+}
+
+fieldset {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid var(--letra-padrao);
+    border-radius: 7px;
+    justify-content: center;
+}
+
+legend {
+    padding: 0 7px;
+}
+
+form {
+    display: flex;
+    gap: 15px;
+}
+
+label{
+    margin-bottom: 4px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#uf{
+    min-width: 80px;
+}
+
+#formatacao{
+    min-width: 180px;
+}
+
+.modal-container {
+    display: none;
+    background-color: var(--background-modal-fundo);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+
+}
+
+.agrupador-home {
+    width: 85%;
+    gap: 15px;
+}
+
+.agrupador-home span {
+    padding: 50px 10px;
+    background-color: var(--background-spans);
+    width: 100%;
+    min-width: 320px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: 2px solid var(--background-body);
+    cursor: pointer;
+}
+
+.agrupador-home span:hover {
+    border: 2px solid var(--background-spans);
+    background-color: var(--background-spans-hover);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--backgound-footer);
+    padding: 15px;
+    border-radius: 20px;
+    min-width: 450px;
+}
+
+.fechar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-fechar {
+    padding: 0 0 5px 8px;
+    font-size: 17px;
+}
+
+.elemento-filtros {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.elemento-filtros input,
+.combobox,
+option {
+    color: var(--background-modal-fundo);
+    padding: 5px;
+    border: 1px solid var(--letra-padrao);
+    display: flex;
+    justify-content: flex-start;
+    height: 27px;
+}
+
+.elemento-filtros input,
+.combobox {
+    border-radius: 5px;
+    width: 100%;
+    min-width: 170px;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 0;
+    border: 1px solid var(--background-modal-fundo);
+}
+
+.btn-gerar{
+    min-width: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.btn-gerar button{
+    padding: 7px;
+    background-color: var(--background-botao-gerar);
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid var(--background-botao-gerar);
+}
+
+.btn-gerar button:hover{
+    border: 2px solid var(--background-botao-gerar);
+    background-color: var(--background-botao-gerar-hover);
+}
+
+.retorno-container{
+    margin-top: 15px;
+    width: 100%;
+    background-color: var(--background-text-area);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.retorno{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 350px;
+    overflow-y: auto;
+    color: var(--background-modal-fundo);
+    resize: none;
+    border: 0;
+    background-color: var(--background-text-area);
+    line-height: 22px;
+}
+
+.retorno:focus{
+    border: 0;
+}
+
