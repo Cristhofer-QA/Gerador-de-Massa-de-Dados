@@ -19,11 +19,11 @@
     <section>
         <div class="agrupador-home container">
 
-            <span class="container" onclick="abrir('modal-nome')">
+            <span class="container" onclick="abrir('modal-nome'), criarComboSexo('sexo')">
                 Gerador de nomes
             </span>
 
-            <span class="container" onclick="abrir('modal-id')">
+            <span class="container" onclick="abrir('modal-cpf'), criarComboUf('uf')">
                 Gerador de CPF válido
             </span>
 
@@ -53,7 +53,7 @@
     <div class="container modal-container" id="modal-nome">
         <div class="modal container">
             <div class="fechar">
-                <button class="btn-fechar" onclick="fechar('modal-nome')">X</button>
+                <button class="btn-fechar" onclick="fechar('modal-nome'), removerCombobox('sexo')" >X</button>
             </div>
             <h2>Gerador de nomes</h2>
             <fieldset>
@@ -64,9 +64,6 @@
                         <label for="sexo">Sexo</label>
                         <select name="" id="sexo" class="combobox" required>
                             <option value="" disabled selected>Selecione o sexo</option>
-                            <option value="1">Feminino</option>
-                            <option value="2">Masculino</option>
-                            <option value="3">Indiferente</option>
                         </select>
                     </div>
                     <div class="elemento-filtros">
@@ -100,10 +97,10 @@
 
 
 
-    <div class="container modal-container" id="modal-id">
-        <div class="modal container">
+    <div class="container modal-container" id="modal-cpf" >
+        <div class="modal container" >
             <div class="fechar">
-                <button class="btn-fechar" onclick="fechar('modal-id')">X</button>
+                <button class="btn-fechar" onclick="fechar('modal-cpf'), removerCombobox('uf')">X</button>
             </div>
             <h2>Gerador de CPF</h2>
             <fieldset>
@@ -112,35 +109,8 @@
                 <form action="" method="" id="geradorCpf">
                     <div class="elemento-filtros">
                         <label for="uf">UF*</label>
-                        <select name="" id="uf" class="combobox" required >
+                        <select name="" id="uf" class="combobox combo-uf" required >
                             <option value="0" selected disabled>UF</option>
-                            <option value="AC">AC</option>
-                            <option value="AL">AL</option>
-                            <option value="AM">AM</option>
-                            <option value="AP">AP</option>
-                            <option value="BA">BA</option>
-                            <option value="CE">CE</option>
-                            <option value="DF">DF</option>
-                            <option value="ES">ES</option>
-                            <option value="GO">GO</option>
-                            <option value="MA">MA</option>
-                            <option value="MG">MG</option>
-                            <option value="MS">MS</option>
-                            <option value="MT">MT</option>
-                            <option value="PA">PA</option>
-                            <option value="PB">PB</option>
-                            <option value="PE">PE</option>
-                            <option value="PI">PI</option>
-                            <option value="PR">PR</option>
-                            <option value="RJ">RJ</option>
-                            <option value="RN">RN</option>
-                            <option value="RO">RO</option>
-                            <option value="RR">RR</option>
-                            <option value="RS">RS</option>
-                            <option value="SC">SC</option>
-                            <option value="SE">SE</option>
-                            <option value="SP">SP</option>
-                            <option value="TO">TO</option>
                         </select>
                     </div>
 
@@ -156,8 +126,8 @@
                     </div>
 
                     <div class="elemento-filtros">
-                        <label for="quantidade">Quantidade*</label>
-                        <input type="number" id="quantidade-cpf" placeholder="Informe a quantidade" min="0" max=400000
+                        <label for="quantidade-cpf">Quantidade*</label>
+                        <input type="number" id="quantidade-cpf" placeholder="Informe a quantidade" min="15" max=400000
                             required onfocusout="limitarNumeroMaximo('#quantidade-cpf')">
                     </div>
                     <div class="btn-gerar">

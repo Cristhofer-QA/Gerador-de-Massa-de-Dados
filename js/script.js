@@ -14,22 +14,68 @@ function limitarCaracteres(elemento) {
     }
 }
 
+
+function transformarNumeroParaPositivo(elemento) {
+    const campoParaObservar = document.querySelector(elemento);
+    if (campoParaObservar.value < 0) {
+        campoParaObservar.value = (campoParaObservar.value * (-1));
+    }
+}
+
 function limitarNumeroMinimo(elemento) {
-    if (elemento.value < elemento.min) {
-        elemento.value = (elemento.value * (-1));
-    }
+    transformarNumeroParaPositivo(elemento);
+    const campoParaObservar = document.querySelector(elemento);
+    if (campoParaObservar.value < campoParaObservar.min) {
+        campoParaObservar.value = campoParaObservar.min;
+    };
 }
 
-
-function limitarNumeroMaximo(elemento) {
-    const element = document.querySelector(elemento);
+function limitarNumeroMaximo(element) {
+    const max = 400000;
     limitarNumeroMinimo(element);
-    const elementoPositivo = document.querySelector(elemento)
-    const max = 40000;
-    if (elementoPositivo.value > max) {
-        elementoPositivo.value = max;
+    const campoParaObservar = document.querySelector(element);
+    if (campoParaObservar.value > max) {
+        campoParaObservar.value = max;
     }
 }
+
+function criarOptionsSelectValorIgualTexto(seletorCampo, listaElementos) {
+    const select = document.getElementById(seletorCampo);
+    listaElementos.forEach(function (chave) {
+        select.appendChild(new Option(chave));
+    });
+}
+
+function criarOptionsSelectValorDiferenteTexto(seletorCampo, listaElementos) {
+    const select = document.getElementById(seletorCampo);
+    listaElementos.forEach(function (chave, elemento) {
+        select.appendChild(new Option(chave, elemento));
+    });
+}
+
+function criarComboUf(selectorCampo) {
+    const uf = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
+    criarOptionsSelectValorIgualTexto(selectorCampo, uf);
+};
+
+function criarComboSexo(selectorCampo) {
+    const sexo = ['Feminino', 'Masculino', 'Indiferente'];
+    criarOptionsSelectValorDiferenteTexto(selectorCampo, sexo);
+};
+
+
+function removerCombobox(selectorCampo) {
+    debugger;
+    const select = document.getElementById(selectorCampo);
+    var options = select.getElementsByTagName('OPTION');
+    for (var i = 2; options.length; i++) {
+        select.remove(options[i]);;
+    }
+};
+
+
+
+
 
 class Cpf {
     digitosCpf = [];
@@ -125,19 +171,19 @@ class GerarCpf {
     }
 
     gerarCpfComPontuacao(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}\n`
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
     }
 
     gerarCpfSemPontuacao(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}\n`
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
     }
 
     gerarCpfApenasPontos(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}\n`
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
     }
 
     gerarCpfApenasTraço(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}\n`
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
     }
 
     escolherTipoPontuacao(tipoPontuacao, cpf) {
@@ -168,7 +214,7 @@ class MultiplosCpf {
     gerarMultiplosCpf(regiaoFiscal, tipoPontuacao, quantidades) {
         for (let i = 0; i < quantidades; i++) {
             const cpf = new GerarCpf(regiaoFiscal, tipoPontuacao);
-            this.listaCpf = this.listaCpf + "" + cpf.cpf_valido;
+            this.listaCpf = this.listaCpf + cpf.cpf_valido + "\n";
 
         }
     }
@@ -187,7 +233,7 @@ btn.addEventListener("click", function (event) {
         window.alert("Selecione a UF");
     } else if (qtd == '') {
         window.alert("Informe a QUANTIDADE");
-    } else if ( qtd == '0') {
+    } else if (qtd == '0') {
         window.alert("Informe uma QUANTIDADE maior que ZERO");
     } else {
         const cpf = new MultiplosCpf(uf, formatacao, qtd);
