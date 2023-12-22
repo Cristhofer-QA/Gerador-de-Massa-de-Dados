@@ -177,13 +177,18 @@ option {
     border: 1px solid var(--letra-padrao);
     display: flex;
     justify-content: flex-start;
-    height: 27px;
+    height: 29px;
 }
 
 .elemento-filtros input,
 .combobox {
     border-radius: 5px;
     width: 100%;
+    max-width: 210px;
+}
+
+.elemento-filtros input[type=number]{
+    max-width: 180px;
     min-width: 170px;
 }
 

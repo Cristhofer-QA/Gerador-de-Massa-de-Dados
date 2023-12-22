@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Massa de dados</title>
     <meta charset="UTF-8">
+    <link rel="SHORTCUT ICON" href="./image/logo.png">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,11 +20,11 @@
     <section>
         <div class="agrupador-home container">
 
-            <span class="container" onclick="abrir('modal-nome'), criarComboSexo('sexo')">
+            <span class="container" onclick="abrirEfechar('modal-nome'), criarComboSexo('sexo')">
                 Gerador de nomes
             </span>
 
-            <span class="container" onclick="abrir('modal-cpf'), criarComboUf('uf')">
+            <span class="container" onclick="abrirEfechar('modal-cpf'), criarComboUf('uf'), criarComboFormatacaoCPF('formatacao')">
                 Gerador de CPF válido
             </span>
 
@@ -53,7 +54,7 @@
     <div class="container modal-container" id="modal-nome">
         <div class="modal container">
             <div class="fechar">
-                <button class="btn-fechar" onclick="fechar('modal-nome'), removerCombobox('sexo')" >X</button>
+                <button class="btn-fechar" onclick="abrirEfechar('modal-nome'), removerCombobox('sexo')" >X</button>
             </div>
             <h2>Gerador de nomes</h2>
             <fieldset>
@@ -63,7 +64,6 @@
                     <div class="elemento-filtros">
                         <label for="sexo">Sexo</label>
                         <select name="" id="sexo" class="combobox" required>
-                            <option value="" disabled selected>Selecione o sexo</option>
                         </select>
                     </div>
                     <div class="elemento-filtros">
@@ -100,7 +100,7 @@
     <div class="container modal-container" id="modal-cpf" >
         <div class="modal container" >
             <div class="fechar">
-                <button class="btn-fechar" onclick="fechar('modal-cpf'), removerCombobox('uf')">X</button>
+                <button class="btn-fechar" onclick="abrirEfechar('modal-cpf'), removerCombobox('uf'), removerCombobox('formatacao')">X</button>
             </div>
             <h2>Gerador de CPF</h2>
             <fieldset>
@@ -110,18 +110,12 @@
                     <div class="elemento-filtros">
                         <label for="uf">UF*</label>
                         <select name="" id="uf" class="combobox combo-uf" required >
-                            <option value="0" selected disabled>UF</option>
                         </select>
                     </div>
 
                     <div class="elemento-filtros">
                         <label for="formatacao">Formatação*</label>
                         <select name="" id="formatacao" class="combobox" required>
-                            <option value="0" selected disabled>Formatação</option>
-                            <option value="1">Sem formatação</option>
-                            <option value="2">Pontos e traço</option>
-                            <option value="3">Apenas pontos</option>
-                            <option value="4">Apenas traço</option>
                         </select>
                     </div>
 

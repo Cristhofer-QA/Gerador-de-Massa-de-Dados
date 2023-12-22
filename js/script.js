@@ -1,26 +1,29 @@
 
-function fechar(elemento) {
-    document.getElementById(elemento).style.display = "none";
+function abrirEfechar(elemento) {
+    var element = document.getElementById(elemento);
+    var propriedade = window.getComputedStyle(element);
+    var atributo = propriedade.getPropertyValue('display');
+    if (atributo == "none") {
+        document.getElementById(elemento).style.display = "flex";
+    } else {
+        document.getElementById(elemento).style.display = "none";
+    }
 };
 
-function abrir(elemento) {
-    document.getElementById(elemento).style.display = "flex";
-};
 
 function limitarCaracteres(elemento) {
     const element = document.getElementById(elemento);
     if (element.value.length > element.maxLength) {
         element.value = element.value.slice(0, element.maxLength);
     }
-}
-
+};
 
 function transformarNumeroParaPositivo(elemento) {
     const campoParaObservar = document.querySelector(elemento);
     if (campoParaObservar.value < 0) {
         campoParaObservar.value = (campoParaObservar.value * (-1));
     }
-}
+};
 
 function limitarNumeroMinimo(elemento) {
     transformarNumeroParaPositivo(elemento);
@@ -28,7 +31,7 @@ function limitarNumeroMinimo(elemento) {
     if (campoParaObservar.value < campoParaObservar.min) {
         campoParaObservar.value = campoParaObservar.min;
     };
-}
+};
 
 function limitarNumeroMaximo(element) {
     const max = 400000;
@@ -37,41 +40,62 @@ function limitarNumeroMaximo(element) {
     if (campoParaObservar.value > max) {
         campoParaObservar.value = max;
     }
-}
+};
+
+function criarPrimeiraOptionInativa(seletorCampo, primeiroElemento) {
+    const select = document.getElementById(seletorCampo);
+    select.appendChild(new Option(primeiroElemento, "0")).setAttribute("disabled", "disabled");
+};
 
 function criarOptionsSelectValorIgualTexto(seletorCampo, listaElementos) {
     const select = document.getElementById(seletorCampo);
     listaElementos.forEach(function (chave) {
-        select.appendChild(new Option(chave));
+        select.appendChild(new Option(chave, chave));
     });
-}
+};
 
 function criarOptionsSelectValorDiferenteTexto(seletorCampo, listaElementos) {
     const select = document.getElementById(seletorCampo);
     listaElementos.forEach(function (chave, elemento) {
         select.appendChild(new Option(chave, elemento));
     });
-}
+};
 
 function criarComboUf(selectorCampo) {
     const uf = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
+    const primeiroElemento = ['UF'];
+    criarPrimeiraOptionInativa(selectorCampo, primeiroElemento);
     criarOptionsSelectValorIgualTexto(selectorCampo, uf);
 };
 
 function criarComboSexo(selectorCampo) {
     const sexo = ['Feminino', 'Masculino', 'Indiferente'];
+    const primeiroElemento = ['Selecione o sexo']
+    criarPrimeiraOptionInativa(selectorCampo, primeiroElemento);
     criarOptionsSelectValorDiferenteTexto(selectorCampo, sexo);
 };
 
+function criarComboFormatacaoCPF(selectorCampo) {
+    const formatacao = ['Sem formatação', 'Pontos e traço', 'Apenas pontos', 'Apenas traço'];
+    const primeiroElemento = ['Formatação']
+    criarPrimeiraOptionInativa(selectorCampo, primeiroElemento);
+    criarOptionsSelectValorDiferenteTexto(selectorCampo, formatacao);
+};
 
 function removerCombobox(selectorCampo) {
-    debugger;
     const select = document.getElementById(selectorCampo);
     var options = select.getElementsByTagName('OPTION');
-    for (var i = 2; options.length; i++) {
+    for (var i = 1; options.length; i++) {
         select.remove(options[i]);;
     }
 };
+
+
+
+
+
+
+
 
 
 
