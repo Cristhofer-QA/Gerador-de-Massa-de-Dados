@@ -26,6 +26,19 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+input[type=button]{
+    background: none;
+    border: 0px;
+    cursor: pointer;
+}
+
+input[type=button]:hover{
+    background: none;
+    border: 0px;
+    cursor: pointer;
+}
+
+
 body {
     height: 100vh;
     width: 100vw;
@@ -70,6 +83,7 @@ h2 {
     font-size: 25px;
     font-weight: 100;
     margin-bottom: 30px;
+    cursor: default;
 }
 
 fieldset {
@@ -206,15 +220,14 @@ select:focus {
     justify-content: center;
 }
 
-.btn-gerar button{
+.btn-gerar input[type=button]{
     padding: 7px;
     background-color: var(--background-botao-gerar);
-    cursor: pointer;
     border-radius: 5px;
     border: 2px solid var(--background-botao-gerar);
 }
 
-.btn-gerar button:hover{
+.btn-gerar input[type=button]:hover{
     border: 2px solid var(--background-botao-gerar);
     background-color: var(--background-botao-gerar-hover);
 }

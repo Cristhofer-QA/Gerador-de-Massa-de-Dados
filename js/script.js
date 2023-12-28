@@ -19,7 +19,7 @@ function limitarCaracteres(elemento) {
 };
 
 function transformarNumeroParaPositivo(elemento) {
-    const campoParaObservar = document.querySelector(elemento);
+    const campoParaObservar = document.getElementById(elemento);
     if (campoParaObservar.value < 0) {
         campoParaObservar.value = (campoParaObservar.value * (-1));
     }
@@ -27,16 +27,17 @@ function transformarNumeroParaPositivo(elemento) {
 
 function limitarNumeroMinimo(elemento) {
     transformarNumeroParaPositivo(elemento);
-    const campoParaObservar = document.querySelector(elemento);
-    if (campoParaObservar.value < campoParaObservar.min) {
-        campoParaObservar.value = campoParaObservar.min;
-    };
+    const campoParaObservar = document.getElementById(elemento);
+    const min = 15;
+    if (campoParaObservar.value <= min) {
+        campoParaObservar.value = min;
+    }
 };
 
 function limitarNumeroMaximo(element) {
     const max = 400000;
     limitarNumeroMinimo(element);
-    const campoParaObservar = document.querySelector(element);
+    const campoParaObservar = document.getElementById(element);
     if (campoParaObservar.value > max) {
         campoParaObservar.value = max;
     }
@@ -57,7 +58,7 @@ function criarOptionsSelectValorIgualTexto(seletorCampo, listaElementos) {
 function criarOptionsSelectValorDiferenteTexto(seletorCampo, listaElementos) {
     const select = document.getElementById(seletorCampo);
     listaElementos.forEach(function (chave, elemento) {
-        select.appendChild(new Option(chave, elemento));
+        select.appendChild(new Option(chave, elemento + 1));
     });
 };
 
@@ -90,9 +91,23 @@ function removerCombobox(selectorCampo) {
     }
 };
 
+function limparCampo(selectorCampo) {
+    const campo = document.getElementById(selectorCampo);
+    campo.value = '';
+}
 
+function scriptsFecharGeradorCPF() {
+    limparCampo('quantidade-cpf');
+    limparCampo('retorno-cpf');
+    removerCombobox('uf');
+    removerCombobox('formatacao')
+}
 
-
+function scriptAbrirGeradorCPF() {
+    abrirEfechar('modal-cpf');
+    criarComboUf('uf');
+    criarComboFormatacaoCPF('formatacao');
+}
 
 
 
@@ -193,23 +208,6 @@ class GerarCpf {
         const cpf = new Cpf(regiaoFiscal)
         this.cpf_valido = this.escolherTipoPontuacao(tipoPontuacao, cpf);
     }
-
-    gerarCpfComPontuacao(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
-    }
-
-    gerarCpfSemPontuacao(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
-    }
-
-    gerarCpfApenasPontos(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
-    }
-
-    gerarCpfApenasTraço(cpf) {
-        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
-    }
-
     escolherTipoPontuacao(tipoPontuacao, cpf) {
         /* if else ternário
         return tipoPontuacao == 0
@@ -225,6 +223,22 @@ class GerarCpf {
         } else if (tipoPontuacao == 4) {
             return this.gerarCpfApenasTraço(cpf);
         }
+    }
+
+    gerarCpfComPontuacao(cpf) {
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
+    }
+
+    gerarCpfSemPontuacao(cpf) {
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
+    }
+
+    gerarCpfApenasPontos(cpf) {
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}.${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}.${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
+    }
+
+    gerarCpfApenasTraço(cpf) {
+        return `${cpf.digitosCpf[0]}${cpf.digitosCpf[1]}${cpf.digitosCpf[2]}${cpf.digitosCpf[3]}${cpf.digitosCpf[4]}${cpf.digitosCpf[5]}${cpf.digitosCpf[6]}${cpf.digitosCpf[7]}${cpf.digitosCpf[8]}-${cpf.digitosCpf[9]}${cpf.digitosCpf[10]}`
     }
 }
 
@@ -242,29 +256,29 @@ class MultiplosCpf {
 
         }
     }
-}
+};
 
 
-const btn = document.querySelector('#bt-gerar-cpf')
-btn.addEventListener("click", function (event) {
-    event.preventDefault();
-    const uf = document.querySelector('#uf').value;
-    const formatacao = document.querySelector('#formatacao').value;
-    const qtd = document.querySelector('#quantidade-cpf').value;
-    if (formatacao == 0) {
-        window.alert("Selecione a FORMATAÇÃO");
-    } if (uf == 0) {
-        window.alert("Selecione a UF");
-    } else if (qtd == '') {
-        window.alert("Informe a QUANTIDADE");
-    } else if (qtd == '0') {
-        window.alert("Informe uma QUANTIDADE maior que ZERO");
-    } else {
-        const cpf = new MultiplosCpf(uf, formatacao, qtd);
-        cpf.gerarMultiplosCpf();
-        cpf.imprimir.innerHTML = cpf.listaCpf;
+
+
+
+function gerar(idBotao) {
+    if (idBotao.includes('cpf')) {
+        const uf = document.querySelector('#uf').value;
+        const formatacao = document.querySelector('#formatacao').value;
+        const qtd = document.querySelector('#quantidade-cpf').value;
+        if (formatacao != 0 && qtd != '' && qtd != '0' && uf != 0) {
+            const cpf = new MultiplosCpf(uf, formatacao, qtd);
+            cpf.gerarMultiplosCpf();
+            cpf.imprimir.value = cpf.listaCpf;
+        } else if (uf == 0) {
+            window.alert("Selecione a UF");
+        } else if (formatacao == 0) {
+            window.alert("Selecione a FORMATAÇÃO");
+        } else if (qtd == '') {
+            window.alert("Informe a QUANTIDADE");
+        }
     }
-
-})
+}
 
 

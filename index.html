@@ -24,7 +24,7 @@
                 Gerador de nomes
             </span>
 
-            <span class="container" onclick="abrirEfechar('modal-cpf'), criarComboUf('uf'), criarComboFormatacaoCPF('formatacao')">
+            <span class="container" onclick="scriptAbrirGeradorCPF()">
                 Gerador de CPF válido
             </span>
 
@@ -54,7 +54,7 @@
     <div class="container modal-container" id="modal-nome">
         <div class="modal container">
             <div class="fechar">
-                <button class="btn-fechar" onclick="abrirEfechar('modal-nome'), removerCombobox('sexo')" >X</button>
+                <button class="btn-fechar" onclick="abrirEfechar('modal-nome'), removerCombobox('sexo')">X</button>
             </div>
             <h2>Gerador de nomes</h2>
             <fieldset>
@@ -81,7 +81,7 @@
                             required>
                     </div>
                     <div class="btn-gerar">
-                        <button type="submit" id="bt-gerar-nome">Gerar</button>
+                        <input type="button" id="bt-gerar-nome" value="Gerar" >
                     </div>
                 </form>
             </fieldset>
@@ -92,15 +92,10 @@
         </div>
     </div>
 
-
-
-
-
-
-    <div class="container modal-container" id="modal-cpf" >
-        <div class="modal container" >
+    <div class="container modal-container" id="modal-cpf">
+        <div class="modal container">
             <div class="fechar">
-                <button class="btn-fechar" onclick="abrirEfechar('modal-cpf'), removerCombobox('uf'), removerCombobox('formatacao')">X</button>
+                <button class="btn-fechar" onclick="abrirEfechar('modal-cpf'), scriptsFecharGeradorCPF()">X</button>
             </div>
             <h2>Gerador de CPF</h2>
             <fieldset>
@@ -109,7 +104,7 @@
                 <form action="" method="" id="geradorCpf">
                     <div class="elemento-filtros">
                         <label for="uf">UF*</label>
-                        <select name="" id="uf" class="combobox combo-uf" required >
+                        <select name="" id="uf" class="combobox combo-uf" required>
                         </select>
                     </div>
 
@@ -122,12 +117,12 @@
                     <div class="elemento-filtros">
                         <label for="quantidade-cpf">Quantidade*</label>
                         <input type="number" id="quantidade-cpf" placeholder="Informe a quantidade" min="15" max=400000
-                            required onfocusout="limitarNumeroMaximo('#quantidade-cpf')">
+                            required onfocusout="limitarNumeroMaximo('quantidade-cpf')">
                     </div>
                     <div class="btn-gerar">
-                        <button type="submit" id="bt-gerar-cpf">Gerar</button>
+                        <input type="button" id="bt-gerar-cpf" value="Gerar" onclick="gerar('bt-gerar-cpf')">
                     </div>
-                    
+
                 </form>
             </fieldset>
 
