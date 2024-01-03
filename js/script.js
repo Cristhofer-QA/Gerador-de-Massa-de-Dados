@@ -28,7 +28,7 @@ function transformarNumeroParaPositivo(elemento) {
 function limitarNumeroMinimo(elemento) {
     transformarNumeroParaPositivo(elemento);
     const campoParaObservar = document.getElementById(elemento);
-    const min = 15;
+    const min = 1;
     if (campoParaObservar.value <= min) {
         campoParaObservar.value = min;
     }
