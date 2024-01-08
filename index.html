@@ -20,7 +20,7 @@
     <section>
         <div class="agrupador-home container">
 
-            <span class="container" onclick="abrirEfechar('modal-nome'), criarComboSexo('sexo')">
+            <span class="container" onclick="scriptAbrirGeradorNome()">
                 Gerador de nomes
             </span>
 
@@ -54,7 +54,7 @@
     <div class="container modal-container" id="modal-nome">
         <div class="modal container">
             <div class="fechar">
-                <button class="btn-fechar" onclick="abrirEfechar('modal-nome'), removerCombobox('sexo')">X</button>
+                <button class="btn-fechar" onclick="abrirEfechar('modal-nome'), scriptsFecharGeradorNome()">X</button>
             </div>
             <h2>Gerador de nomes</h2>
             <fieldset>
@@ -69,19 +69,15 @@
                     <div class="elemento-filtros">
                         <label for="tipo-nome">Formatação</label>
                         <select name="" id="tipo-nome" class="combobox" required>
-                            <option value="" disabled selected>Selecione a formatação</option>
-                            <option value="1">Apenas o primeiro nome</option>
-                            <option value="2">Some e sobrenome completo</option>
-                            <option value="3">Nome e sobrenome abreviado</option>
                         </select>
                     </div>
                     <div class="elemento-filtros">
                         <label for="quantidade-nome">Quantidade</label>
-                        <input type="number" id="quantidade-nome" placeholder="Informe a quantidade" min="1" maxlength="4"
-                            required>
+                        <input type="number" id="quantidade-nome" placeholder="Informe a quantidade" min="1"
+                            maxlength="4" onfocusout="limitarNumeroMaximo('quantidade-nome')" required>
                     </div>
                     <div class="btn-gerar">
-                        <input type="button" id="bt-gerar-nome" value="Gerar" onclick="gerar('bt-gerar-nome')">
+                        <input type="button" id="bt-gerar-nome" value="Gerar" onclick="gerarNome()">
                     </div>
                 </form>
             </fieldset>
@@ -120,7 +116,7 @@
                             required onfocusout="limitarNumeroMaximo('quantidade-cpf')">
                     </div>
                     <div class="btn-gerar">
-                        <input type="button" id="bt-gerar-cpf" value="Gerar" onclick="gerar('bt-gerar-cpf')">
+                        <input type="button" id="bt-gerar-cpf" value="Gerar" onclick="gerarCpf(gerarCpf)">
                     </div>
 
                 </form>

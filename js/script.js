@@ -70,11 +70,11 @@ function criarComboUf(selectorCampo) {
     criarOptionsSelectValorIgualTexto(selectorCampo, uf);
 };
 
-function criarComboSexo(selectorCampo) {
+function criarComboSexo(selecorCampo) {
     const sexo = ['Feminino', 'Masculino', 'Indiferente'];
     const primeiroElemento = ['Selecione o sexo']
-    criarPrimeiraOptionInativa(selectorCampo, primeiroElemento);
-    criarOptionsSelectValorDiferenteTexto(selectorCampo, sexo);
+    criarPrimeiraOptionInativa(selecorCampo, primeiroElemento);
+    criarOptionsSelectValorDiferenteTexto(selecorCampo, sexo);
 };
 
 function criarComboFormatacaoCPF(selectorCampo) {
@@ -83,6 +83,14 @@ function criarComboFormatacaoCPF(selectorCampo) {
     criarPrimeiraOptionInativa(selectorCampo, primeiroElemento);
     criarOptionsSelectValorDiferenteTexto(selectorCampo, formatacao);
 };
+
+function criarComboFormatacaoNome(selectorCampo) {
+    const formatacao = ['Apenas o primeiro nome', 'Nome e sobrenome completo', 'Nome e sobrenome abreviado'];
+    const primeiroElemento = ['Selecione a formatação']
+    criarPrimeiraOptionInativa(selectorCampo, primeiroElemento);
+    criarOptionsSelectValorDiferenteTexto(selectorCampo, formatacao);
+};
+
 
 function removerCombobox(selectorCampo) {
     const select = document.getElementById(selectorCampo);
@@ -104,59 +112,111 @@ function scriptsFecharGeradorCPF() {
     removerCombobox('formatacao')
 }
 
+function scriptsFecharGeradorNome() {
+    limparCampo('quantidade-nome');
+    limparCampo('retorno-nome');
+    removerCombobox('sexo');
+    removerCombobox('tipo-nome')
+}
+
 function scriptAbrirGeradorCPF() {
     abrirEfechar('modal-cpf');
     criarComboUf('uf');
     criarComboFormatacaoCPF('formatacao');
-}
+};
 
+function scriptAbrirGeradorNome() {
+    abrirEfechar('modal-nome');
+    criarComboSexo('sexo');
+    criarComboFormatacaoNome('tipo-nome');
+};
 
+function gerarCpf() {
+    const uf = document.querySelector('#uf').value;
+    const formatacao = document.querySelector('#formatacao').value;
+    const quantidade = document.querySelector('#quantidade-cpf').value;
+    const imprimir = document.querySelector('#retorno-cpf');
 
-function gerar(idBotao) {
-  
-    if (idBotao.includes('cpf')) {
-        const uf = document.querySelector('#uf').value;
-        const formatacao = document.querySelector('#formatacao').value;
-        const qtd = document.querySelector('#quantidade-cpf').value;
-        const imprimir = document.querySelector('#retorno-cpf');
-        
-        if (formatacao != 0 && qtd != '' && uf != 0) {
-            const cpf = new MultiplosCpf(uf, formatacao, qtd);
-            cpf.gerarMultiplosCpf();
-            imprimir.value = cpf.listaCpf;
-        } if (uf == 0) {
-            window.alert("Selecione a UF");
-        } if (formatacao == 0) {
-            window.alert("Selecione a FORMATAÇÃO");
-        } if (qtd == '') {
-            window.alert("Informe a QUANTIDADE");
-        };
+    if (formatacao != 0 && quantidade != '' && uf != 0) {
+        const cpf = new MultiplosCpf(uf, formatacao, quantidade);
+        cpf.gerarMultiplosCpf();
+        imprimir.value = cpf.listaCpf;
+    } else {
+        debugger
+        validarDadosFiltroCpf(uf, formatacao, quantidade)
+    }
+};
+
+function validarDadosFiltroCpf(uf, formatacao, quantidade) {
+    let listaInconsistencias = [];
+    let mensagemErroUmItemIncorreto = 'Informe o filtro: ';
+    let mensagemErroMultiplosItensIncorretos = 'Informe os filtros: ';
+
+    if (uf == 0) {
+        listaInconsistencias.push('UF')
+    } if (formatacao == 0) {
+        listaInconsistencias.push('Formatação')
+    } if (quantidade == '') {
+        listaInconsistencias.push('Quantidade')
     };
 
-    if (idBotao.includes('nome')) {
-        debugger
-        const sexo = document.querySelector('#sexo').value;
-        const formatação = document.querySelector('#tipo-nome').value;
-        const quantidade = document.querySelector('#quantidade-nome').value;
-        const imprimir = document.querySelector('#retorno-nome');
+    switch (listaInconsistencias.length) {
+        case 1:
+            window.alert(mensagemErroUmItemIncorreto + listaInconsistencias[0]);
+            break;
+        case 2:
+            window.alert(mensagemErroMultiplosItensIncorretos + listaInconsistencias[0] + ' e ' + listaInconsistencias[1]);
+            break;
 
-        if (sexo != 0 && quantidade != '' && formatação != 0) {
-            const nomes = new MultiplosNomes(sexo, formatação, quantidade)
-            imprimir.value = nomes.listaDeNomesGerados;
-        } if (sexo == 0) {
-            window.alert("Selecione o SEXO");
-        } if (formatação == 0) {
-            window.alert("Selecione a FORMATAÇÃO");
-        } if (quantidade == '') {
-            window.alert("Informe a QUANTIDADE");
-        };
-
+        case 3:
+            window.alert(mensagemErroMultiplosItensIncorretos + listaInconsistencias[0] + ', ' + listaInconsistencias[1] + ' e ' + listaInconsistencias[2]);
+            break;
     }
-
 };
 
 
 
+function gerarNome() {
+
+    const sexo = document.querySelector('#sexo').value;
+    const formatação = document.querySelector('#tipo-nome').value;
+    const quantidade = document.querySelector('#quantidade-nome').value;
+    const imprimir = document.querySelector('#retorno-nome');
+
+    if (sexo != 0 && quantidade != '' && formatação != 0) {
+        const nomes = new MultiplosNomes(sexo, formatação, quantidade)
+        imprimir.value = nomes.listaDeNomesGerados;
+    } else{
+        validarDadosFiltroNome(sexo, formatação, quantidade);
+    }
+};
+
+function validarDadosFiltroNome(sexo, formatacao, quantidade) {
+    let listaInconsistencias = [];
+    let mensagemErroUmItemIncorreto = 'Informe o filtro: ';
+    let mensagemErroMultiplosItensIncorretos = 'Informe os filtros: ';
+
+    if (sexo == 0) {
+        listaInconsistencias.push('Sexo')
+    } if (formatacao == 0) {
+        listaInconsistencias.push('Formatação')
+    } if (quantidade == '') {
+        listaInconsistencias.push('Quantidade')
+    };
+
+    switch (listaInconsistencias.length) {
+        case 1:
+            window.alert(mensagemErroUmItemIncorreto + listaInconsistencias[0]);
+            break;
+        case 2:
+            window.alert(mensagemErroMultiplosItensIncorretos + listaInconsistencias[0] + ' e ' + listaInconsistencias[1]);
+            break;
+
+        case 3:
+            window.alert(mensagemErroMultiplosItensIncorretos + listaInconsistencias[0] + ', ' + listaInconsistencias[1] + ' e ' + listaInconsistencias[2]);
+            break;
+    }
+};
 
 
 
@@ -315,10 +375,10 @@ class Nome {
                 return ''
             case '2':
                 //nome e sobrenome completo
-                return this.gerarSobreNomeUnitario() + ' ' + this.gerarSobreNomeUnitario()+ ' ' +this.gerarSobreNomeUnitario();
+                return this.gerarSobreNomeUnitario() + ' ' + this.gerarSobreNomeUnitario() + ' ' + this.gerarSobreNomeUnitario();
             case '3':
                 //nome e sobrenome abreviado
-                return this.gerarSobrenomeResumido()+ ' ' + this.gerarSobrenomeResumido()+ ' ' + this.gerarSobreNomeUnitario()
+                return this.gerarSobrenomeResumido() + ' ' + this.gerarSobrenomeResumido() + ' ' + this.gerarSobreNomeUnitario()
         }
     };
 
