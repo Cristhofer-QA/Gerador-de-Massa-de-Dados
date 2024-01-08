@@ -67,8 +67,8 @@
                         </select>
                     </div>
                     <div class="elemento-filtros">
-                        <label for="tipo">Formatação</label>
-                        <select name="" id="tipo" class="combobox" required>
+                        <label for="tipo-nome">Formatação</label>
+                        <select name="" id="tipo-nome" class="combobox" required>
                             <option value="" disabled selected>Selecione a formatação</option>
                             <option value="1">Apenas o primeiro nome</option>
                             <option value="2">Some e sobrenome completo</option>
@@ -76,18 +76,18 @@
                         </select>
                     </div>
                     <div class="elemento-filtros">
-                        <label for="quantidade">Quantidade</label>
-                        <input type="number" id="quantidade" placeholder="Informe a quantidade" min="1" maxlength="4"
+                        <label for="quantidade-nome">Quantidade</label>
+                        <input type="number" id="quantidade-nome" placeholder="Informe a quantidade" min="1" maxlength="4"
                             required>
                     </div>
                     <div class="btn-gerar">
-                        <input type="button" id="bt-gerar-nome" value="Gerar" >
+                        <input type="button" id="bt-gerar-nome" value="Gerar" onclick="gerar('bt-gerar-nome')">
                     </div>
                 </form>
             </fieldset>
 
             <div class="retorno-container container">
-                <textarea class="retorno" id="retorno" disabled></textarea>
+                <textarea class="retorno" id="retorno-nome" disabled></textarea>
             </div>
         </div>
     </div>
@@ -116,7 +116,7 @@
 
                     <div class="elemento-filtros">
                         <label for="quantidade-cpf">Quantidade*</label>
-                        <input type="number" id="quantidade-cpf" placeholder="Informe a quantidade" min="15" max=400000
+                        <input type="number" id="quantidade-cpf" placeholder="Informe a quantidade" min="1" max=400000
                             required onfocusout="limitarNumeroMaximo('quantidade-cpf')">
                     </div>
                     <div class="btn-gerar">
