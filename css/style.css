@@ -26,13 +26,13 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-input[type=button]{
+input[type=button] {
     background: none;
     border: 0px;
     cursor: pointer;
 }
 
-input[type=button]:hover{
+input[type=button]:hover {
     background: none;
     border: 0px;
     cursor: pointer;
@@ -106,22 +106,15 @@ form {
     gap: 15px;
 }
 
-label{
+label {
     margin-bottom: 4px;
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#uf{
-    min-width: 80px;
-}
-
-#formatacao{
-    min-width: 180px;
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 0;
+    border: 1px solid var(--background-modal-fundo);
 }
 
 .modal-container {
@@ -131,7 +124,8 @@ label{
     width: 100%;
     height: 100%;
     min-width: 1000px;
-
+    align-items: center;
+    justify-content: center;
 }
 
 .agrupador-home {
@@ -201,38 +195,31 @@ option {
     max-width: 210px;
 }
 
-.elemento-filtros input[type=number]{
-    max-width: 180px;
-    min-width: 170px;
+.elemento-filtros input[type=number] {
+    width: 120px;
 }
 
-textarea:focus,
-input:focus,
-select:focus {
-    outline: 0;
-    border: 1px solid var(--background-modal-fundo);
-}
 
-.btn-gerar{
+.btn-gerar {
     min-width: 50px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 
-.btn-gerar input[type=button]{
+.btn-gerar input[type=button] {
     padding: 7px;
     background-color: var(--background-botao-gerar);
     border-radius: 5px;
     border: 2px solid var(--background-botao-gerar);
 }
 
-.btn-gerar input[type=button]:hover{
+.btn-gerar input[type=button]:hover {
     border: 2px solid var(--background-botao-gerar);
     background-color: var(--background-botao-gerar-hover);
 }
 
-.retorno-container{
+.retorno-container {
     margin-top: 15px;
     width: 100%;
     background-color: var(--background-text-area);
@@ -240,7 +227,7 @@ select:focus {
     padding: 15px;
 }
 
-.retorno{
+.retorno {
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -255,7 +242,26 @@ select:focus {
     line-height: 22px;
 }
 
-.retorno:focus{
+.retorno:focus {
     border: 0;
 }
 
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#uf {
+    min-width: 80px;
+}
+
+#formatacao {
+    min-width: 180px;
+}
+
+#quantidade-matriz {
+    width: 100%;
+    min-width: 110px;
+}

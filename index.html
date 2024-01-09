@@ -28,7 +28,7 @@
                 Gerador de CPF válido
             </span>
 
-            <span class="container">
+            <span class="container" onclick="scriptAbrirGeradorCNPJ()">
                 Gerador de CNPJ válido
             </span>
         </div>
@@ -51,7 +51,7 @@
 
 
 
-    <div class="container modal-container" id="modal-nome">
+    <div class="modal-container" id="modal-nome">
         <div class="modal container">
             <div class="fechar">
                 <button class="btn-fechar" onclick="abrirEfechar('modal-nome'), scriptsFecharGeradorNome()">X</button>
@@ -62,19 +62,19 @@
 
                 <form action="">
                     <div class="elemento-filtros">
-                        <label for="sexo">Sexo</label>
+                        <label for="sexo">Sexo*</label>
                         <select name="" id="sexo" class="combobox" required>
                         </select>
                     </div>
                     <div class="elemento-filtros">
-                        <label for="tipo-nome">Formatação</label>
+                        <label for="tipo-nome">Formatação*</label>
                         <select name="" id="tipo-nome" class="combobox" required>
                         </select>
                     </div>
                     <div class="elemento-filtros">
-                        <label for="quantidade-nome">Quantidade</label>
-                        <input type="number" id="quantidade-nome" placeholder="Informe a quantidade" min="1"
-                            maxlength="4" onfocusout="limitarNumeroMaximo('quantidade-nome')" required>
+                        <label for="quantidade-nome">Quantidade*</label>
+                        <input type="number" id="quantidade-nome" placeholder="Quantidade" min="1"
+                            maxlength="4" onfocusout="limitarNumeroMaximo('quantidade-nome', 400000)" required>
                     </div>
                     <div class="btn-gerar">
                         <input type="button" id="bt-gerar-nome" value="Gerar" onclick="gerarNome()">
@@ -88,7 +88,7 @@
         </div>
     </div>
 
-    <div class="container modal-container" id="modal-cpf">
+    <div class="modal-container" id="modal-cpf">
         <div class="modal container">
             <div class="fechar">
                 <button class="btn-fechar" onclick="abrirEfechar('modal-cpf'), scriptsFecharGeradorCPF()">X</button>
@@ -112,8 +112,8 @@
 
                     <div class="elemento-filtros">
                         <label for="quantidade-cpf">Quantidade*</label>
-                        <input type="number" id="quantidade-cpf" placeholder="Informe a quantidade" min="1" max=400000
-                            required onfocusout="limitarNumeroMaximo('quantidade-cpf')">
+                        <input type="number" id="quantidade-cpf" placeholder="Quantidade" min="1" max=400000
+                            required onfocusout="limitarNumeroMaximo('quantidade-cpf', 400000)">
                     </div>
                     <div class="btn-gerar">
                         <input type="button" id="bt-gerar-cpf" value="Gerar" onclick="gerarCpf(gerarCpf)">
@@ -127,7 +127,52 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-container" id="modal-cnpj">
+        <div class="modal container">
+            <div class="fechar">
+                <button class="btn-fechar" onclick="abrirEfechar('modal-cnpj'), scriptsFecharGeradorCNPJ()">X</button>
+            </div>
+            <h2>Gerador de CNPJ</h2>
+            <fieldset>
+                <legend>Filtros</legend>
+                <form action="" method="" id="geradorCnpj">
+                    <div class="elemento-filtros matriz">
+                        <label for="quantidade-matriz">Número filial*</label>
+                        <input type="number" id="quantidade-matriz" placeholder="Quantidade" min="1"
+                            max=9999 required onfocusout="limitarNumeroMaximo('quantidade-matriz', 9999)">
+                    </div>
+
+                    <div class="elemento-filtros">
+                        <label for="formatacao-cnpj">Formatação*</label>
+                        <select name="" id="formatacao-cnpj" class="combobox" required>
+                        </select>
+                    </div>
+
+                    <div class="elemento-filtros">
+                        <label for="quantidade-cnpj">Quantidade*</label>
+                        <input type="number" id="quantidade-cnpj" placeholder="Quantidade" min="1" max=400000
+                            required onfocusout="limitarNumeroMaximo('quantidade-cnpj', 400000)">
+                    </div>
+                    <div class="btn-gerar">
+                        <input type="button" id="bt-gerar-cnpj" value="Gerar" onclick="gerarCnpj()">
+                    </div>
+
+                </form>
+            </fieldset>
+
+            <div class="retorno-container container">
+                <textarea class="retorno" id="retorno-cnpj" disabled></textarea>
+            </div>
+        </div>
+    </div>
+
+
     <script src="./js/script.js"></script>
+    <script src="./js/nomes.js"></script>
+    <script src="./js/cpf.js"></script>
+    <script src="./js/cnpj.js"></script>
+
 </body>
 
 </html>
